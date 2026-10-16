@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Mountain | Abhishek & Kanika',
-  description: 'Join Abhishek and Kanika for their mountain wedding celebrations in Mussoorie. An illustrated wedding invitation.',
+  title: 'Wedding Invitation | Abhishek & Kanika',
+  description: 'Join Abhishek and Kanika in celebrating their wedding. An illustrated invitation to a special celebration.',
   robots: { index: false, follow: false },
 };
 

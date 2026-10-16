@@ -19,7 +19,7 @@ npm run dev
 4. Gunakan Node.js **22.x**, lalu klik **Deploy**.
 
 Proyek saat ini tidak membutuhkan environment variable. Halaman tersedia di `/`,
-`/demos/mountain`, dan `/panduan-gambar`.
+`/invitation`, dan `/panduan-gambar`.
 
 ## Aset dan konten
 
@@ -32,7 +32,7 @@ di `reference` (termasuk profil browser) dikecualikan dari Git. Build tidak memb
 atau menjalankan skrip pengambilan aset di `scripts`.
 
 Data acara dan tautan undangan berada di `src/lib/invitation.ts`. Tautan lokasi,
-Instagram, serta nomor WhatsApp masih berupa konfigurasi demo; sesuaikan sebelum
+Instagram, serta nomor WhatsApp masih berupa konfigurasi contoh; sesuaikan sebelum
 membagikan undangan final.
 
 ## Verifikasi

@@ -16,7 +16,7 @@ export const artwork = {
   flourish: 'BS00HRHT5NWobvzo4WjW9UA763g',
 };
 
-// Keep the demo's destinations and RSVP placeholder.
+// Replace these sample destinations and the RSVP placeholder before publishing the final invitation.
 export const invitationLinks = {
   location: 'https://missingpiecedesign.com/',
   rsvp: 'https://wa.me/91XXXXXXXXXX',

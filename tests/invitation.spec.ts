@@ -55,7 +55,7 @@ for (const width of [320, 390, 768, 1024, 1440, 1920]) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
     await expect(page.getByRole('button', { name: 'Play wedding music' })).toBeVisible();
     await expect(page.getByText(/Buy Now|INR 3999|Missing\s*Piece/i)).toHaveCount(0);
-    await expect(page.locator('.demo-watermarks, .watermark, .buy-button')).toHaveCount(0);
+    await expect(page.locator('.watermark, .buy-button')).toHaveCount(0);
     expect(errors).toEqual([]);
   });
 }
@@ -78,8 +78,8 @@ test('gallery navigation, event anchors and music work', async ({ page }) => {
   await expect(page.getByRole('button', { name: 'Play wedding music' })).toHaveAttribute('aria-pressed', 'false');
 });
 
-test('original demo route and destination configuration are available', async ({ page }) => {
-  await page.goto('/demos/mountain');
+test('invitation route and destination configuration are available', async ({ page }) => {
+  await page.goto('/invitation');
   await expect(page.getByRole('heading', { name: 'INVITE', exact: true })).toBeVisible();
   await expect(page.getByRole('link', { name: /RSVP on WhatsApp/ })).toHaveAttribute('href', 'https://wa.me/91XXXXXXXXXX');
 });

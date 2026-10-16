@@ -4,7 +4,7 @@ import { image } from '@/lib/invitation';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: 'Panduan gambar | Mountain Wedding',
+  title: 'Panduan Gambar | Wedding Invitation',
   description: 'Katalog kode gambar, preview, posisi, dan ukuran desktop serta mobile untuk penggantian ilustrasi undangan.',
 };
 

@@ -6,9 +6,9 @@ import { Art } from './art';
 import { invitationLinks } from '@/lib/invitation';
 
 const designs = {
-  location: { outer: 'c02-medali-lokasi-luar', inner: 'gpuyLKzQFz8PbRrE1RR3LfnRWw', icon: 'FMx33N0QNZEN9o98413jFSazlw', title: <>See the<br />route</>, helper: 'Click to open the map', label: 'See the route. Click to open the map (reference demo link)' },
-  rsvp: { outer: 'g02-medali-rsvp-luar', inner: 'KBiow1jmaeWHazxshSNGQ08lvw', icon: 'GUNxHDQlW7tXOiQkxIgQNaqyQVw', title: <>Looking forward<br />to see you</>, helper: 'Click the link to RSVP', label: 'Looking forward to see you. Click the link to RSVP on WhatsApp (reference demo placeholder)' },
-  instagram: { outer: 'f02-medali-instagram-luar', inner: 'Aof0oMPsYxLFv2zceiax3Nj7qyU', icon: 'gdmN2dDmg0szS1jwXPJFJZ0xsIE', title: <>Follow the<br />action</>, helper: 'Click the link to open Instagram', label: 'Follow the action. Click the link to open Instagram (reference demo link)' },
+  location: { outer: 'c02-medali-lokasi-luar', inner: 'gpuyLKzQFz8PbRrE1RR3LfnRWw', icon: 'FMx33N0QNZEN9o98413jFSazlw', title: <>See the<br />route</>, helper: 'Click to open the map', label: 'See the route. Click to open the map' },
+  rsvp: { outer: 'g02-medali-rsvp-luar', inner: 'KBiow1jmaeWHazxshSNGQ08lvw', icon: 'GUNxHDQlW7tXOiQkxIgQNaqyQVw', title: <>Looking forward<br />to see you</>, helper: 'Click the link to RSVP', label: 'Looking forward to see you. Click the link to RSVP on WhatsApp' },
+  instagram: { outer: 'f02-medali-instagram-luar', inner: 'Aof0oMPsYxLFv2zceiax3Nj7qyU', icon: 'gdmN2dDmg0szS1jwXPJFJZ0xsIE', title: <>Follow the<br />action</>, helper: 'Click the link to open Instagram', label: 'Follow the action. Click the link to open Instagram' },
 };
 
 export function Medallion({ kind }: { kind: keyof typeof designs }) {

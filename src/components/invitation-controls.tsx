@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 
-export function DemoControls() {
+export function InvitationControls() {
   const audio = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [audioError, setAudioError] = useState('');
