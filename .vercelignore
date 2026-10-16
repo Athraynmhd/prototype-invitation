@@ -1,0 +1,6 @@
+.kilo/
+GAMBAR - BARU/
+reference/
+test-results/
+playwright-report/
+*.tsbuildinfo
