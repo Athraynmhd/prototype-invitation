@@ -85,6 +85,47 @@ test('invitation route and destination configuration are available', async ({ pa
 });
 
 for (const width of [390, 1440]) {
+  test(`hero entrance builds from back to front at ${width}px`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    // Show every hero depth together, including the lower stage, to verify the full order.
+    await page.setViewportSize({ width, height: 3000 });
+    await page.route('**/images/rEehKhdtkygCYWwZsEWl6rkOY.webp', async route => {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      await route.continue();
+    });
+    await page.addInitScript(() => {
+      const trace: { depth: number; at: number }[] = [];
+      const seen = new WeakSet<Element>();
+      Object.assign(window, { heroEntranceTrace: trace });
+      new MutationObserver(records => {
+        for (const { target } of records) {
+          if (!(target instanceof HTMLElement) || !target.classList.contains('hero-layer') || target.dataset.revealed !== 'true' || seen.has(target)) continue;
+          seen.add(target);
+          trace.push({ depth: Number(target.style.zIndex), at: performance.now() });
+        }
+      }).observe(document, { subtree: true, attributes: true, attributeFilter: ['data-revealed'] });
+    });
+    await page.goto('/');
+    const visibleLayers = page.locator('.hero-layer:visible');
+    await expect.poll(() => visibleLayers.evaluateAll(layers => layers.every(layer => (layer as HTMLElement).dataset.revealed === 'true')), { timeout: 10000 }).toBe(true);
+    const trace = await page.evaluate(() => (window as unknown as { heroEntranceTrace: { depth: number; at: number }[] }).heroEntranceTrace);
+    expect(trace).toHaveLength(await visibleLayers.count());
+    const order = trace.map(entry => entry.depth);
+    expect(order).toEqual([...order].sort((a, b) => a - b));
+    const groups = [...new Set(order)].map(depth => trace.filter(entry => entry.depth === depth));
+    for (let i = 0; i < groups.length; i++) {
+      // Symmetric artwork at one depth starts together, with a deliberate beat between depths.
+      expect(Math.max(...groups[i].map(entry => entry.at)) - Math.min(...groups[i].map(entry => entry.at))).toBeLessThan(50);
+      if (i) expect(groups[i][0].at - groups[i - 1][0].at).toBeGreaterThanOrEqual(90);
+    }
+    await expect(page.locator('.hero')).toHaveAttribute('data-entrance-ready', 'true');
+    await expect.poll(() => page.locator('.hero-name > span').evaluateAll(letters => letters.every(letter => Number(getComputedStyle(letter).opacity) >= 0.99))).toBe(true);
+    await page.locator('footer').evaluate(element => element.scrollIntoView({ block: 'end', behavior: 'instant' }));
+    await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+    expect(await visibleLayers.evaluateAll(layers => layers.every(layer => getComputedStyle(layer).opacity === '1'))).toBe(true);
+    expect(await page.evaluate(() => (window as unknown as { heroEntranceTrace: unknown[] }).heroEntranceTrace.length)).toBe(trace.length);
+  });
+
   test(`illustration animations change transforms at ${width}px`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await page.setViewportSize({ width, height: 900 });

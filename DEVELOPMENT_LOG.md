@@ -423,6 +423,66 @@ Verifikasi:
 - Animasi keenam ilustrasi diuji pada 390 dan 1440 px. Pada sampel fase 0%, 25%, 50%, 75%, dan 100%, ilustrasi tidak bertabrakan dengan judul.
 - Screenshot grid desktop/mobile diperiksa. Artefak sementara: `verify-wedding-events.mjs`, `wedding-events-tight-1440.png`, dan `wedding-events-tight-390.png` di folder Temp `opencode`.
 
+### DEV-16 — Entrance hero tersusun dari belakang ke depan
+
+**Tanggal:** 17 Oktober 2026  
+**Permintaan:** rapikan entrance berdasarkan layer paling belakang terlebih dahulu, kemudian menumpuk perlahan sampai depan. Pengguna menegaskan perubahan hanya untuk entrance; loop yang sudah pas dipertahankan.  
+**Cakupan:** entrance ilustrasi dan judul hero, desktop dan mobile.
+
+Perubahan:
+
+- Entrance hero memakai antrean berdasarkan `z-index` asli, menggantikan jeda berdasarkan index array. Layer yang masuk area pandang diproses dari kedalaman rendah ke tinggi; elemen yang belum terlihat akan mengikuti antrean ketika mulai masuk viewport.
+- Elemen pada kedalaman sama, termasuk pasangan kiri–kanan, menunggu gambar satu kelompok selesai `decode()` dan mulai bersamaan. Gambar foreground yang lebih cepat dimuat tidak dapat mendahului kelompok belakang yang sedang diproses.
+- Jeda antar-kelompok adalah **240 ms**. Fade opacity berlangsung **0,9 detik**, disertai pergeseran vertikal kecil **−14 → 0 px** selama **1,2 detik**, memakai easing `cubic-bezier(.22, .61, .36, 1)`.
+- Judul hero menunggu font serta dimulainya entrance layer terdepan. Sinyal `data-entrance-ready="true"` dan event `hero-entrance-ready` menghubungkan controller dengan judul. Entrance per huruf memakai durasi/easing/stagger yang sama seperti sebelumnya.
+- Antrean entrance dibatalkan saat reduced motion aktif atau controller dilepas. Reveal tetap sekali jalan dan tidak diulang ketika pengguna scroll kembali; fallback tanpa JavaScript tetap menampilkan konten.
+- Konfigurasi loop, amplitudo, durasi, easing, serta mekanisme running/paused tetap memakai pengaturan sebelumnya. Antrean entrance hanya mengatur `opacity` dan individual `translate`, terpisah dari keyframes loop pada `transform`.
+
+File yang diubah:
+
+- `src/components/artwork-animations.tsx`
+- `src/components/hero.tsx`
+- `src/components/hero-title.tsx`
+- `src/app/globals.css`
+- `tests/invitation.spec.ts`
+- `DEVELOPMENT_LOG.md`
+
+Verifikasi:
+
+- `npm run build`: berhasil, termasuk pemeriksaan TypeScript; server production lokal dijalankan ulang.
+- `npm test -- --workers=2`: **21 tes lulus**.
+- Dua tes entrance baru pada 390 dan 1440 px sengaja memperlambat satu gambar pohon belakang selama 1,5 detik. Hasil: seluruh kelompok masuk berurutan menurut kedalaman, elemen satu kedalaman mulai bersamaan, jeda antar-kelompok terukur, judul muncul setelah layer depan, serta entrance tidak diputar ulang setelah scroll keluar dan kembali.
+- Suite juga memeriksa transform loop, pause/resume saat offscreen, enam viewport 320–1920 px, arah entrance section lain, reduced motion, tampilan tanpa JavaScript, galeri, musik, dan seluruh konten setelah traversal halaman.
+- Timeline visual enam tahap diperiksa pada viewport normal 390 × 900 dan 1440 × 900. Artefak sementara: `capture-wedding-hero-entrance.mjs`, `wedding-hero-entrance-390.png`, dan `wedding-hero-entrance-1440.png` di folder Temp `opencode`.
+
+### DEV-17 — Entrance hero lebih cepat dan ringan
+
+**Tanggal:** 17 Oktober 2026  
+**Permintaan:** entrance sebelumnya terlalu lambat; percepat dan perhalus dengan tetap menjaga urutan layer.
+
+Perubahan khusus entrance:
+
+- Jeda antar-kelompok kedalaman dipangkas dari 240 menjadi **120 ms**.
+- Fade hero dari 0,9 menjadi **0,55 detik**; transisi translate dari 1,2 menjadi **0,75 detik**. Jarak perpindahan diperkecil dari −14 menjadi **−8 px** agar gerakan terasa lebih ringan.
+- Entrance judul dipercepat dari 1,5 menjadi **0,75 detik**, offset awal −8 px, jeda awal 40 ms, stagger baris 80 ms, serta stagger huruf 25 ms. Judul tetap mengikuti layer terdepan dan kesiapan font.
+- Easing tetap `cubic-bezier(.22, .61, .36, 1)`, dengan susunan belakang → depan, kelompok simetris bersama, dan penantian decode yang sama.
+- Pengaturan animasi loop tetap dipertahankan.
+
+File yang diubah:
+
+- `src/components/artwork-animations.tsx`
+- `src/components/hero-title.tsx`
+- `src/app/globals.css`
+- `tests/invitation.spec.ts` — batas toleransi jeda tes disesuaikan dengan beat 120 ms.
+- `DEVELOPMENT_LOG.md`
+
+Verifikasi:
+
+- `npm run build`: berhasil; server production lokal dijalankan ulang.
+- Tujuh tes terkait lulus melalui `npm test -- --workers=2 --grep "hero entrance|illustration animations change|all displayed content|reduced motion|without JavaScript"`.
+- Pengujian meliputi urutan pada 390/1440 px dengan gambar belakang diperlambat, transform loop, scroll/traversal seluruh konten, reduced motion, dan fallback tanpa JavaScript.
+- Timeline visual entrance desktop dan mobile diperiksa: `wedding-hero-entrance-fast-390.png` dan `wedding-hero-entrance-fast-1440.png` di folder Temp `opencode`.
+
 ## 5. Sistem animasi dan pengaturan akhir
 
 ### 5.1 Pemisahan entrance dan loop
@@ -431,7 +491,7 @@ Verifikasi:
 | --- | --- |
 | Entrance konten/ilustrasi | `opacity` dan properti individual `translate` |
 | Loop ilustrasi | CSS keyframes pada `transform` |
-| Entrance judul hero | Motion per huruf, menunggu font siap |
+| Entrance judul hero | Motion per huruf, menunggu font siap dan entrance layer terdepan |
 | Aktivasi loop | IntersectionObserver, visibilitas dokumen, dan preferensi reduced motion |
 
 Penggunaan `translate` individual untuk entrance mencegah entrance menggantikan `transform` yang dipakai oleh loop atau pemusatan elemen.
@@ -444,15 +504,16 @@ Penggunaan `translate` individual untuk entrance mencegah entrance menggantikan 
 | Reveal umum: translate | `1.3s`, easing yang sama |
 | Jarak reveal samping umum | 64 px desktop; 42 px mobile |
 | Offset reveal atas umum | -42 px desktop; -30 px mobile |
-| Jarak reveal samping hero | 24 px |
-| Offset reveal atas hero | -18 px |
-| Entrance hero: opacity / translate | `1.25s / 1.8s` |
+| Jarak reveal samping hero | 0 px; arah masuk seragam vertikal |
+| Offset reveal atas hero | -8 px |
+| Entrance hero: opacity / translate | `.55s / .75s` |
 | Easing entrance hero | `cubic-bezier(.22, .61, .36, 1)` |
-| Jeda antar-layer hero | `min(index, 10) × 24ms`, maksimum 240 ms |
-| Judul hero: posisi awal | opacity `0`, `y: -12` |
+| Jeda antar-kelompok kedalaman hero | 120 ms; `z-index` rendah → tinggi; gambar satu kedalaman mulai bersama setelah decode |
+| Judul hero: posisi awal | opacity `0`, `y: -8` |
 | Judul hero: posisi akhir | opacity `1`, `y: 0` |
-| Judul hero: durasi | `1.5s` |
-| Judul hero: jeda | `.12 + line × .16 + letterIndex × .045` detik |
+| Judul hero: durasi | `.75s` |
+| Judul hero: jeda | `.04 + line × .08 + letterIndex × .025` detik |
+| Judul hero: pemicu | Font siap + `hero-entrance-ready` dari layer terdepan |
 
 ### 5.3 Gerakan berulang hero
 

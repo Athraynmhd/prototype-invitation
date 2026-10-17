@@ -48,9 +48,8 @@ html[data-motion-ready='true'] [data-reveal]:not([data-revealed='true']) * { poi
 .ambient-sway { --motion-angle: 6deg; --motion-y: -8px; --motion-duration: 3.4s; }
 .ambient-breathe { --motion-scale: 1.065; --motion-duration: 3.6s; }
 /* Entrance easing is independent from the scenery's repeat motion. */
-.hero-layer[data-reveal] { --reveal-distance: 24px; }
-.hero-layer[data-reveal-from='top'] { --reveal-y: -18px; }
-html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: 1.25s, 1.8s; transition-timing-function: cubic-bezier(.22, .61, .36, 1); }
+.hero-layer[data-reveal] { --reveal-x: 0px; --reveal-y: -8px; }
+html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: .55s, .75s; transition-delay: 0ms; transition-timing-function: cubic-bezier(.22, .61, .36, 1); }
 .motion-hotel { --motion-x: 120px; --motion-duration: 4.2s; }
 .motion-balloon { --motion-x: 30px; --motion-y: -40px; --motion-duration: 3s; }
 .motion-moon { --motion-angle: 18deg; --motion-duration: 2.6s; --motion-ease: linear; }

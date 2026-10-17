@@ -41,13 +41,13 @@ export function Hero() {
   return (
     <section className="hero relative isolate" aria-label="Abhishek weds Kanika">
       {layers.map(({ name, mobileName, desktop: d, mobile: p, z, className = '', motion }, index) => {
-        const style = { '--dx': `${d[0] / 14.4}%`, '--dy': `${d[1] / 14.4}cqw`, '--dw': `${d[2] / 14.4}%`, '--dh': `${d[3] / 14.4}cqw`, '--mx': `${p[0] / 3.9}%`, '--my': `${p[1] / 3.9}cqw`, '--mw': `${p[2] / 3.9}%`, '--mh': `${p[3] / 3.9}cqw`, '--reveal-delay': `${Math.min(index, 10) * 24}ms`, zIndex: z } as CSSProperties;
+        const style = { '--dx': `${d[0] / 14.4}%`, '--dy': `${d[1] / 14.4}cqw`, '--dw': `${d[2] / 14.4}%`, '--dh': `${d[3] / 14.4}cqw`, '--mx': `${p[0] / 3.9}%`, '--my': `${p[1] / 3.9}cqw`, '--mw': `${p[2] / 3.9}%`, '--mh': `${p[3] / 3.9}cqw`, zIndex: z } as CSSProperties;
         return mobileName ? (
-          <picture className={`hero-layer ${className}`} style={style} data-art-motion={motion} data-reveal="auto" key={`${name}-${index}`}>
+          <picture className={`hero-layer ${className}`} style={style} data-art-motion={motion} data-reveal="top" key={`${name}-${index}`}>
             <source media="(max-width: 809px)" srcSet={image(mobileName)} />
             <Art name={name} eager reveal={false} />
           </picture>
-        ) : <Art name={name} key={`${name}-${index}`} className={`hero-layer ${className}`} style={style} motion={motion} eager={z === 4 || z === 6} />;
+        ) : <Art name={name} key={`${name}-${index}`} className={`hero-layer ${className}`} style={style} motion={motion} reveal="top" eager={z === 4 || z === 6} />;
       })}
       <HeroTitle />
     </section>
