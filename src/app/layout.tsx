@@ -4,6 +4,20 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'Undangan Pernikahan Ichsan & Ulfa',
   description: 'Dengan memohon rida Allah, Ichsan dan Ulfa mengundang Anda merayakan pernikahan dalam kehangatan keluarga dan keindahan adat Aceh.',
+  metadataBase: new URL('https://wedding-omega-drab.vercel.app'),
+  openGraph: {
+    type: 'website',
+    locale: 'id_ID',
+    url: 'https://wedding-omega-drab.vercel.app',
+    siteName: 'Pernikahan Ichsan & Ulfa',
+    title: 'Undangan Pernikahan Ichsan & Ulfa',
+    description: 'Bismillahirrahmanirrahim. Dengan memohon rida Allah, kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan Ichsan & Ulfa.',
+  },
+  twitter: {
+    card: 'summary',
+    title: 'Undangan Pernikahan Ichsan & Ulfa',
+    description: 'Dengan memohon rida Allah, kami mengundang Anda untuk hadir dan memberikan doa restu pada pernikahan Ichsan & Ulfa.',
+  },
   robots: { index: false, follow: false },
 };
 
