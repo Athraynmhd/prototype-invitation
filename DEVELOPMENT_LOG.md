@@ -533,6 +533,12 @@ Verifikasi:
 - Katalog gambar diselaraskan dengan aset ikon terbaru.
 - Verifikasi: tujuh lebar layar 320–1920 px tanpa overflow pada judul yang diperiksa; seluruh tujuh ikon berhasil dimuat dan delapan penempatan balon menggunakan revisi terbaru. Screenshot desktop/mobile diperiksa. Seluruh 21 tes Playwright lulus dan build produksi berhasil.
 
+### DEV-23 — Mengganti empat foto galeri pasangan
+
+- Mengganti slide C07–C10 sesuai urutan `GAMBAR - BARU/Foto pasangan 1.png` hingga `Foto pasangan 4.png` menjadi `public/images/foto-pasangan-{1..4}-v1.webp`, masing-masing 371 × 464 px. Konversi mempertahankan rasio sumber tanpa peregangan.
+- Array `photos` memakai keempat aset baru; katalog otomatis mengikuti sumber yang sama. Alt gambar diselaraskan menjadi “Foto pasangan 1–4”.
+- Verifikasi hasil build produksi pada lebar 390 dan 1440 px: seluruh slide dimuat dan cocok urutannya, indikator dan navigasi keyboard bekerja termasuk kembali dari slide 4 ke 1, preview katalog C07–C10 sesuai, tanpa overflow horizontal atau pageerror. Screenshot bingkai oval mobile/desktop diperiksa; build produksi berhasil.
+
 ## 5. Sistem animasi dan pengaturan akhir
 
 ### 5.1 Pemisahan entrance dan loop

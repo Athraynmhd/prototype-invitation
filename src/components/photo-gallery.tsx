@@ -34,7 +34,7 @@ export function PhotoGallery() {
       <div className="gallery-scene ambient-float relative h-full w-full" data-art-motion="translate">
         <Art name={artwork.frame} className="gallery-frame pointer-events-none absolute inset-0 h-full w-full" reveal={false} />
         <div className="photo-window" onPointerDown={event => { pointerX.current = event.clientX; }} onPointerUp={event => { if (pointerX.current !== null && Math.abs(event.clientX - pointerX.current) > 30) changePhoto(event.clientX < pointerX.current ? 1 : -1); pointerX.current = null; }} onPointerCancel={() => { pointerX.current = null; }}>
-          {photos.map((photo, index) => <img className={`gallery-photo ${index === active ? 'is-active' : ''}`} key={photo} src={image(photo)} alt={`Foto ilustrasi pernikahan ${index + 1}`} aria-hidden={index !== active} loading="lazy" draggable={false} />)}
+          {photos.map((photo, index) => <img className={`gallery-photo ${index === active ? 'is-active' : ''}`} key={photo} src={image(photo)} alt={`Foto pasangan ${index + 1}`} aria-hidden={index !== active} loading="lazy" draggable={false} />)}
           <button className="gallery-arrow gallery-prev" onClick={() => changePhoto(-1)} aria-label="Foto sebelumnya">&#8249;</button>
           <button className="gallery-arrow gallery-next" onClick={() => changePhoto(1)} aria-label="Foto berikutnya">&#8250;</button>
           <button className="gallery-toggle" onClick={() => setAutoplayPaused(current => !current)} aria-label={autoplayPaused ? 'Mulai tayangan foto' : 'Jeda tayangan foto'} aria-pressed={autoplayPaused}>

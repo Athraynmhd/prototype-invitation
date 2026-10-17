@@ -42,4 +42,4 @@ export const guestDetails = [
 
 export const coupleMessage = 'Atas izin Allah dan restu orang tua, kami menyatukan niat dalam ikatan suci pernikahan. Berbalut kehangatan keluarga dan keindahan adat Aceh, kami menantikan kehadiran Bapak, Ibu, dan Saudara. Doa restu Anda menjadi anugerah bagi kami. Semoga Allah meridai langkah ini menuju keluarga yang sakinah, mawaddah, dan rahmah.';
 
-export const photos = ['gRww6exoGDvAz61zxbMcONGtfY', '97fFKjBlB41svOUd0yNGLWv4', 'kIF0ETtgRuNBoRKEFRcc3j8TKc', 'cxldxuk5ae7V1ezs4LEAeu06bQ'];
+export const photos = ['foto-pasangan-1-v1', 'foto-pasangan-2-v1', 'foto-pasangan-3-v1', 'foto-pasangan-4-v1'];
