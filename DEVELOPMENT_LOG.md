@@ -539,6 +539,14 @@ Verifikasi:
 - Array `photos` memakai keempat aset baru; katalog otomatis mengikuti sumber yang sama. Alt gambar diselaraskan menjadi “Foto pasangan 1–4”.
 - Verifikasi hasil build produksi pada lebar 390 dan 1440 px: seluruh slide dimuat dan cocok urutannya, indikator dan navigasi keyboard bekerja termasuk kembali dari slide 4 ke 1, preview katalog C07–C10 sesuai, tanpa overflow horizontal atau pageerror. Screenshot bingkai oval mobile/desktop diperiksa; build produksi berhasil.
 
+### DEV-24 — Penyempurnaan proporsi dan interaksi desktop
+
+- Audit screenshot desktop 810, 1024, 1280, 1440, dan 1920 px menemukan dekorasi balon menimpa teks pada desktop sempit, baris keterangan prosesi tidak sejajar karena judul panjang, serta judul RSVP yang terpecah menjadi tiga baris.
+- Menyesuaikan ukuran/posisi balon, bulan, dan istana serta lebar teks pada rentang 810–1199 px; menyamakan ruang judul kartu prosesi dan memberi tinggi kartu 660 px. Tautan lokasi menjadi tombol outline berarea klik minimal 44 px.
+- Memperlebar judul RSVP agar menjadi dua baris dan memberi ruang lebih lega bagi keterangan/ikon di dalam bingkai. Kontrol galeri desktop diperbesar dan panah tampil saat fokus keyboard berada di galeri.
+- Semua perubahan CSS dibatasi media query desktop (mulai 810 px). Perbandingan geometri sebelum/sesudah pada 390 px identik.
+- Verifikasi screenshot dan geometri pada keenam ukuran: tanpa overflow horizontal atau pageerror; tombol lokasi berada dalam section, baris keterangan sejajar per baris kartu, dan konten RSVP memiliki jarak aman dari tepi bawah bingkai. Seluruh 21 tes Playwright dan `npm run build` lulus.
+
 ## 5. Sistem animasi dan pengaturan akhir
 
 ### 5.1 Pemisahan entrance dan loop

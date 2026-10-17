@@ -180,13 +180,15 @@ html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: .
   .invitation-balloon { --motion-x: -46px; --motion-y: -54px; }
   .invitation-palace { --motion-x: -48px; --motion-y: -22px; --motion-duration: 3.4s; }
   .event-grid { row-gap: 80px; }
-  .event-card { height: 650px; }
+  .event-card { height: 660px; }
   .event-portrait { --motion-scale: 1.075; --motion-duration: 3.4s; }
   .event-balloon { --motion-x: 22px; --motion-y: -34px; --motion-duration: 2.8s; }
   .event-palace { --motion-x: 28px; --motion-y: -16px; --motion-duration: 3.2s; }
   .event-moon { --motion-angle: 22deg; --motion-duration: 2.8s; }
   .event-copy { font-size: 18px; line-height: 23px; gap: 8px; }
-  .event-copy h3 { font-size: 52px; }
+  .event-copy h3 { min-height: 114.4px; padding-inline: 16px; font-size: 52px; }
+  .event-copy a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 4px; padding: 8px 20px; border: 1px solid #ac954580; border-radius: 999px; text-decoration: none; transition: background-color .2s, border-color .2s; }
+  .event-copy a:hover, .event-copy a:focus-visible { background: #ac95451a; border-color: var(--gold); }
   .couple-section { height: 2470px; }
   .medallion { width: 680px; height: 680px; --motion-y: -24px; --motion-duration: 3.2s; }
   .medallion-outer { --motion-duration: 7.2s; }
@@ -197,12 +199,18 @@ html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: .
   .medallion-location .medallion-copy { top: 314px; }
   .medallion-location h2 { line-height: 38px; }
   .medallion-instagram .medallion-copy { top: 302px; }
+  .medallion-rsvp .medallion-copy { top: 306px; gap: 14px; }
+  .medallion-rsvp .medallion-copy h2 { width: 400px; font-size: 50px; line-height: 46px; }
+  .medallion-rsvp .medallion-copy p { width: 240px; }
   .medallion-icon { width: 60px; height: 64px; }
   .medallion-icon.ambient-breathe { --motion-scale: 1.15; --motion-duration: 2.6s; }
   .meet-couple { top: 820px; }
   .meet-flourish, .guest-flourish { width: 108px; height: 108px; --motion-angle: 8deg; --motion-y: -12px; --motion-duration: 3s; }
   .couple-message { max-width: 760px; font-size: 20px; line-height: 27px; margin-top: 40px; }
   .photo-gallery { top: 1460px; }
+  .gallery-arrow { width: 44px; height: 48px; border-radius: 6px; }
+  .gallery-toggle { width: 36px; height: 36px; bottom: 8px; }
+  .photo-gallery:focus-within .gallery-arrow { opacity: 1; }
   .gallery-scene { --motion-y: -30px; --motion-duration: 3.4s; }
   .guest-section { height: 1840px; }
   .guest-heading { top: 850px; }
@@ -223,10 +231,15 @@ html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: .
   .event-grid { width: min(100%, 900px); margin-inline: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; }
   .event-card { justify-self: center; width: 100%; max-width: 429px; }
   .event-art { width: 429px; left: calc(50% - 214.5px); transform: scale(.9); transform-origin: center; }
-  .event-copy h3 { font-size: 44px; }
+  .event-copy h3 { min-height: 96.8px; font-size: 44px; }
 }
 
 @media (min-width: 810px) and (max-width: 1199px) {
+  .invitation-balloon { width: 460px; height: 490px; right: -310px; }
+  .invitation-moon { width: 360px; height: 378px; left: -180px; top: 410px; }
+  .invitation-palace { width: 360px; height: 272px; right: -190px; top: 650px; }
+  .blessings { left: 50%; width: calc(100% - 240px); transform: translateX(-50%); font-size: 26px; line-height: 34px; }
+  .bride-parents { padding-inline: 40px; font-size: 26px; line-height: 34px; }
   .guest-section { height: 2110px; }
   .guest-grid { top: 1450px; grid-template-columns: repeat(2, 260px); gap: 48px 40px; }
   .guest-detail { min-height: 240px; }
