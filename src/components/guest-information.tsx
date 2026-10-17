@@ -8,8 +8,8 @@ export function GuestInformation() {
       <div className="rsvp-medallion"><Medallion kind="rsvp" /></div>
       <div className="guest-heading absolute w-full">
         <Art name={artwork.flourish} className="guest-flourish ambient-sway mx-auto" motion="sway" reveal="top" />
-        <h2 id="things-to-know" data-reveal="top" data-reveal-delay="100">Things to<br />know</h2>
-        <p className="guest-intro mx-auto" data-reveal="top" data-reveal-delay="180">To help you feel at ease and enjoy every moment of the celebrations, we&rsquo;ve gathered a few thoughtful details we&rsquo;d love for you to know before the big day.</p>
+        <h2 id="things-to-know" data-reveal="top" data-reveal-delay="100">Catatan<br />Tamu</h2>
+        <p className="guest-intro mx-auto" data-reveal="top" data-reveal-delay="180">Catatan kecil untuk kenyamanan para tamu. Semoga kebersamaan terasa hangat dan khidmat, dalam naungan doa serta keindahan adat Aceh.</p>
       </div>
       <div className="guest-grid absolute grid w-full justify-center">
         {guestDetails.map(detail => (

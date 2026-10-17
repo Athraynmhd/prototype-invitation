@@ -28,7 +28,7 @@ a { color: inherit; }
 .hero { container-type: inline-size; width: 100%; height: calc(100vw * 2785 / 1440); max-height: 2901.04px; background: url('/images/liVQAaRjDSdoeY00NcyalGC1JA.webp') center / cover; }
 .hero-layer { position: absolute; left: var(--dx); top: var(--dy); width: var(--dw); height: var(--dh); max-width: none; object-fit: cover; pointer-events: none; }
 .hero-layer > img { width: 100%; height: 100%; object-fit: cover; }
-.hero-layer > img[src*='LQC5'], .hero-layer > img[src*='NCJN'] { object-fit: contain; }
+.hero-layer.motion-balloon > img { object-fit: contain; }
 .hero-layer[data-motion-active='true'] { will-change: transform; }
 [data-art-motion] { --motion-duration: 4s; --motion-ease: cubic-bezier(.44, 0, .56, 1); animation-duration: var(--motion-duration); animation-timing-function: var(--motion-ease); animation-delay: var(--motion-delay, 0s); animation-iteration-count: infinite; animation-direction: alternate; animation-play-state: paused; }
 [data-art-motion='translate'] { animation-name: artwork-translate; }
@@ -115,7 +115,7 @@ html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: .
 .medallion-location { color: var(--gold); }
 .medallion-location .medallion-copy { top: 286px; }
 .medallion-location h2 { line-height: 32px; }
-.medallion-icon { width: 45px; height: 48px; object-fit: fill; }
+.medallion-icon { width: 45px; height: 48px; object-fit: contain; }
 .medallion-icon.ambient-breathe { --motion-scale: 1.12; --motion-duration: 2.8s; }
 .medallion-instagram { color: #fef6d1; }
 .medallion-instagram .medallion-copy { top: 266px; }
@@ -171,10 +171,10 @@ html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: .
   .invitation-site { max-width: none; padding-top: 0; }
   .hero { height: auto; max-height: none; aspect-ratio: 1440 / 2785; }
   .music-button { right: 40px; }
-  .hero-name-0, .hero-name-2 { height: auto; font-size: clamp(60px, 7.2cqw, 108px); line-height: 1.1; }
+  .hero-name-0, .hero-name-2 { width: 80%; height: auto; font-size: clamp(84px, 9.6cqw, 184px); line-height: 1.1; }
   .hero-name-0 { top: 5.5cqw; }
-  .hero-name-1 { top: 14.9cqw; height: auto; font-size: clamp(36px, 4.2cqw, 63px); line-height: 1.1; }
-  .hero-name-2 { top: 20.3cqw; }
+  .hero-name-1 { top: 16cqw; height: auto; font-size: clamp(40px, 4.6cqw, 76px); line-height: 1.1; }
+  .hero-name-2 { top: 19cqw; }
   .invitation-ganesha { --motion-scale: 1.08; --motion-duration: 3.2s; }
   .invitation-moon { --motion-angle: 24deg; }
   .invitation-balloon { --motion-x: -46px; --motion-y: -54px; }
@@ -245,9 +245,9 @@ html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: .
   .motion-tree-right { --motion-x: 16px; }
   .motion-leaves-drop { --motion-y: 18px; }
   .phone-only { display: block; }
-  .hero-name-0 { top: 0; font-size: 55px; line-height: 203.5px; }
-  .hero-name-1 { top: 153px; height: 49px; font-size: 30px; line-height: 0; }
-  .hero-name-2 { top: 202px; font-size: 55px; line-height: 0; }
+  .hero-name-0 { top: 0; width: 90%; font-size: clamp(72px, 20vw, 100px); line-height: 203.5px; }
+  .hero-name-1 { top: 153px; height: 49px; font-size: 36px; line-height: 0; }
+  .hero-name-2 { top: 214px; width: 90%; font-size: clamp(76px, 22vw, 108px); line-height: 0; }
   .invitation-section { height: 5013px; background-image: url('/images/OhKsaRXATwXiQKdJxCPeJ5gOLoY.webp'); }
   .invitation-copy { height: 1078px; font-size: 20px; line-height: 20px; }
   .mantra { top: 59px; }
@@ -257,7 +257,7 @@ html[data-motion-ready='true'] .hero-layer[data-reveal] { transition-duration: .
   .invitation-palace { right: -90px; top: 346px; width: 231px; height: 174px; --motion-x: -24px; --motion-y: -10px; }
   .blessings { top: 274px; }
   .blessing-divider, .parents { line-height: 30px; }
-  .invite-heading { top: 475px; font-size: 80px; line-height: 96px; }
+  .invite-heading { top: 475px; padding-inline: 16px; font-size: clamp(44px, 14vw, 64px); line-height: 96px; }
   .invitation-intro { top: 625px; padding: 0 12px; }
   .couple-names { top: 655px; }
   .groom-name { font-size: 70px; line-height: 133px; }

@@ -49,11 +49,11 @@ for (const width of [320, 390, 768, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
-    await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('Abhishek weds Kanika');
+    await expect(page.getByRole('heading', { level: 1 })).toHaveAccessibleName('Ichsan & Ulfa');
     await expect(page.locator('.event-card')).toHaveCount(6);
     await expect(page.locator('.guest-detail')).toHaveCount(4);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-    await expect(page.getByRole('button', { name: 'Play wedding music' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Putar musik undangan' })).toBeVisible();
     await expect(page.getByText(/Buy Now|INR 3999|Missing\s*Piece/i)).toHaveCount(0);
     await expect(page.locator('.watermark, .buy-button')).toHaveCount(0);
     expect(errors).toEqual([]);
@@ -62,26 +62,26 @@ for (const width of [320, 390, 768, 1024, 1440, 1920]) {
 
 test('gallery navigation, event anchors and music work', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Show photograph 2' }).click();
-  await expect(page.getByRole('button', { name: 'Show photograph 2' })).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: 'Next photograph' }).focus();
+  await page.getByRole('button', { name: 'Tampilkan foto 2' }).click();
+  await expect(page.getByRole('button', { name: 'Tampilkan foto 2' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Foto berikutnya' }).focus();
   await page.keyboard.press('Enter');
-  await expect(page.getByRole('button', { name: 'Show photograph 3' })).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: 'Pause photograph slideshow' }).click();
-  await page.getByRole('heading', { name: 'Things to know' }).click();
-  await expect(page.getByRole('button', { name: 'Start photograph slideshow' })).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('link', { name: 'See the route', exact: true }).first().click();
+  await expect(page.getByRole('button', { name: 'Tampilkan foto 3' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Jeda tayangan foto' }).click();
+  await page.getByRole('heading', { name: 'Catatan Tamu' }).click();
+  await expect(page.getByRole('button', { name: 'Mulai tayangan foto' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('link', { name: 'Petunjuk lokasi acara', exact: true }).first().click();
   await expect(page).toHaveURL(/#location$/);
-  await page.getByRole('button', { name: 'Play wedding music' }).click();
-  await expect(page.getByRole('button', { name: 'Pause wedding music' })).toHaveAttribute('aria-pressed', 'true');
-  await page.getByRole('button', { name: 'Pause wedding music' }).click();
-  await expect(page.getByRole('button', { name: 'Play wedding music' })).toHaveAttribute('aria-pressed', 'false');
+  await page.getByRole('button', { name: 'Putar musik undangan' }).click();
+  await expect(page.getByRole('button', { name: 'Jeda musik undangan' })).toHaveAttribute('aria-pressed', 'true');
+  await page.getByRole('button', { name: 'Jeda musik undangan' }).click();
+  await expect(page.getByRole('button', { name: 'Putar musik undangan' })).toHaveAttribute('aria-pressed', 'false');
 });
 
 test('invitation route and destination configuration are available', async ({ page }) => {
   await page.goto('/invitation');
-  await expect(page.getByRole('heading', { name: 'INVITE', exact: true })).toBeVisible();
-  await expect(page.getByRole('link', { name: /RSVP on WhatsApp/ })).toHaveAttribute('href', 'https://wa.me/91XXXXXXXXXX');
+  await expect(page.getByRole('heading', { name: 'Undangan', exact: true })).toBeVisible();
+  await expect(page.getByRole('link', { name: /Konfirmasi kehadiran melalui WhatsApp/ })).toHaveAttribute('href', 'https://wa.me/91XXXXXXXXXX');
 });
 
 for (const width of [390, 1440]) {

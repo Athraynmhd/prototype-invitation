@@ -30,18 +30,18 @@ export function PhotoGallery() {
   }, [visible, paused, autoplayPaused, reducedMotion]);
 
   return (
-    <div ref={ref} className="photo-gallery relative" role="region" aria-roledescription="carousel" aria-label="Bride and groom photographs" data-reveal="top" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
+    <div ref={ref} className="photo-gallery relative" role="region" aria-roledescription="galeri bergulir" aria-label="Galeri kedua mempelai" data-reveal="top" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget)) setPaused(false); }}>
       <div className="gallery-scene ambient-float relative h-full w-full" data-art-motion="translate">
         <Art name={artwork.frame} className="gallery-frame pointer-events-none absolute inset-0 h-full w-full" reveal={false} />
         <div className="photo-window" onPointerDown={event => { pointerX.current = event.clientX; }} onPointerUp={event => { if (pointerX.current !== null && Math.abs(event.clientX - pointerX.current) > 30) changePhoto(event.clientX < pointerX.current ? 1 : -1); pointerX.current = null; }} onPointerCancel={() => { pointerX.current = null; }}>
-          {photos.map((photo, index) => <img className={`gallery-photo ${index === active ? 'is-active' : ''}`} key={photo} src={image(photo)} alt={`Abhishek and Kanika, wedding photograph ${index + 1}`} aria-hidden={index !== active} loading="lazy" draggable={false} />)}
-          <button className="gallery-arrow gallery-prev" onClick={() => changePhoto(-1)} aria-label="Previous photograph">&#8249;</button>
-          <button className="gallery-arrow gallery-next" onClick={() => changePhoto(1)} aria-label="Next photograph">&#8250;</button>
-          <button className="gallery-toggle" onClick={() => setAutoplayPaused(current => !current)} aria-label={autoplayPaused ? 'Start photograph slideshow' : 'Pause photograph slideshow'} aria-pressed={autoplayPaused}>
+          {photos.map((photo, index) => <img className={`gallery-photo ${index === active ? 'is-active' : ''}`} key={photo} src={image(photo)} alt={`Foto ilustrasi pernikahan ${index + 1}`} aria-hidden={index !== active} loading="lazy" draggable={false} />)}
+          <button className="gallery-arrow gallery-prev" onClick={() => changePhoto(-1)} aria-label="Foto sebelumnya">&#8249;</button>
+          <button className="gallery-arrow gallery-next" onClick={() => changePhoto(1)} aria-label="Foto berikutnya">&#8250;</button>
+          <button className="gallery-toggle" onClick={() => setAutoplayPaused(current => !current)} aria-label={autoplayPaused ? 'Mulai tayangan foto' : 'Jeda tayangan foto'} aria-pressed={autoplayPaused}>
             <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><path d={autoplayPaused ? 'M2 1v8l7-4z' : 'M2 1h2v8H2zM6 1h2v8H6z'} /></svg>
           </button>
-          <div className="gallery-dots flex justify-center gap-2" aria-label="Choose a photograph">
-            {photos.map((photo, index) => <button key={photo} onClick={() => setActive(index)} aria-label={`Show photograph ${index + 1}`} aria-pressed={index === active} className={index === active ? 'is-active' : ''} />)}
+          <div className="gallery-dots flex justify-center gap-2" aria-label="Pilih foto">
+            {photos.map((photo, index) => <button key={photo} onClick={() => setActive(index)} aria-label={`Tampilkan foto ${index + 1}`} aria-pressed={index === active} className={index === active ? 'is-active' : ''} />)}
           </div>
         </div>
       </div>

@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Wedding Invitation',
-  description: 'Join Abhishek and Kanika in celebrating their wedding. An illustrated invitation to a special celebration.',
+  title: 'Undangan Pernikahan Ichsan & Ulfa',
+  description: 'Dengan memohon rida Allah, Ichsan dan Ulfa mengundang Anda merayakan pernikahan dalam kehangatan keluarga dan keindahan adat Aceh.',
   robots: { index: false, follow: false },
 };
 
@@ -11,7 +11,7 @@ export const viewport: Viewport = { width: 'device-width', initialScale: 1, them
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="id">
       <head>
         <link rel="preload" href="/fonts/cormorant-infant.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         <link rel="preload" href="/fonts/cormorant-upright.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />

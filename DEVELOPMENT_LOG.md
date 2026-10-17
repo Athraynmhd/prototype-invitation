@@ -483,6 +483,56 @@ Verifikasi:
 - Pengujian meliputi urutan pada 390/1440 px dengan gambar belakang diperlambat, transform loop, scroll/traversal seluruh konten, reduced motion, dan fallback tanpa JavaScript.
 - Timeline visual entrance desktop dan mobile diperiksa: `wedding-hero-entrance-fast-390.png` dan `wedding-hero-entrance-fast-1440.png` di folder Temp `opencode`.
 
+### DEV-18 — Penggantian empat dekorasi bersama
+
+**Tanggal:** 17 Oktober 2026  
+**Permintaan:** ganti simbol Ganesha, dekorasi bawah tengah, balon, dan istana dengan sumber di `GAMBAR - BARU`, mencakup seluruh penempatan desktop/mobile.
+
+- Dibuat enam WebP transparan: `ornamen-emas-undangan`, `dekorasi-tengah-berlian`, `balon-udara-emas`, `balon-udara-emas-mobile`, `istana-awan`, dan `istana-awan-kartu`.
+- Kanvas dan ukuran visual disesuaikan dengan dekorasi sebelumnya. Cakupan: H03/H04/H21, U02/U04/U05, serta E07/E08 pada keenam kartu acara.
+- Referensi bersama dan katalog diperbarui; object-fit balon hero menggunakan selector kelas `.motion-balloon` agar tidak bergantung pada nama file.
+- Posisi, ukuran kotak, layering, entrance, dan loop dipertahankan. Build berhasil, 21 tes lulus, serta pembandingan 126 penempatan di tujuh viewport sesuai baseline. Screenshot desktop/mobile diperiksa.
+
+### DEV-19 — Semua balon menggunakan Balon udara-new.png
+
+**Tanggal:** 17 Oktober 2026  
+**Permintaan:** ganti seluruh balon dengan `GAMBAR - BARU/Balon udara-new.png`, menyesuaikan tempat dan ukurannya.
+
+- Dibuat `public/images/balon-udara-new.webp` (1179 × 1181) dan `public/images/balon-udara-new-mobile.webp` (551 × 729), mempertahankan transparansi sumber.
+- Normalisasi desktop: gambar lebar 920 px pada posisi (74, 46); mobile: lebar 353 px pada posisi (72, 14). Ukuran visual dan ruang tali mengikuti komposisi yang sudah ada.
+- `artwork.balloon` dan `artwork.mobileBalloon` di `src/lib/invitation.ts` kini menunjuk aset baru. Hero H04, isi undangan U04, E07 di seluruh enam kartu, dan katalog otomatis menggunakan sumber baru.
+- Posisi dan ukuran elemen serta pengaturan entrance/loop tetap dipertahankan.
+- Verifikasi: `npm run build` berhasil; `npm test -- --workers=2` menghasilkan **21 tes lulus**. Pembandingan 126 penempatan pada viewport 320, 390, 768, 810, 1024, 1440, dan 1920 px sesuai baseline, dengan sumber gambar baru terkonfirmasi, tanpa overflow atau pageerror. Screenshot hero, undangan, dan kartu desktop/mobile direkam; hero mobile dan grid desktop diperiksa secara visual.
+
+### DEV-20 — Memuat revisi terbaru file balon dengan nama sumber sama
+
+**Tanggal:** 17 Oktober 2026  
+**Permintaan:** gunakan isi terbaru `GAMBAR - BARU/Balon udara-new.png` yang telah ditimpa pengguna.
+
+- Sumber terbaru dikonversi ulang menjadi `balon-udara-new-v2.webp` dan `balon-udara-new-v2-mobile.webp`. Nama output berversi memastikan URL baru tidak memakai cache gambar revisi sebelumnya.
+- Referensi bersama `artwork.balloon` / `artwork.mobileBalloon` diperbarui untuk hero, isi undangan, seluruh enam kartu acara, dan katalog.
+- Normalisasi kanvas, ukuran, posisi, layering, entrance, dan loop mengikuti revisi sebelumnya.
+- Verifikasi browser berhasil: sumber revisi v2 terkonfirmasi, 126 penempatan pada tujuh viewport 320–1920 px sesuai baseline, tanpa overflow atau pageerror. Screenshot hero mobile diperiksa secara visual.
+
+### DEV-21 — Redaksi pernikahan Islami dan adat Aceh
+
+- Mengganti nama utama dan nama mempelai menjadi **Ichsan & Ulfa**, termasuk judul halaman dan label aksesibilitas.
+- Mengganti pembuka, restu keluarga, ajakan, doa, pesan mempelai, informasi tamu, medali, dan penutup dengan bahasa Indonesia yang santun bernuansa Islami dan adat Aceh.
+- Mempertahankan keenam nama tahapan: Ta'aruf, Jak Keumalen, Peukong Haba, Persiapan Hari Bahagia, Akad Nikah, serta Seumapa & Peusijuek.
+- Menghapus nama keluarga, tempat, tanggal, dan klaim layanan dari contoh lama. Jadwal serta lokasi ditulis akan diumumkan; hitung mundur dummy diganti “Insyaallah”.
+- Panjang redaksi disesuaikan dengan ruang visual dan pemenggalan baris. Judul Undangan memakai ukuran 64 px pada layar di bawah 360 px agar tidak terpotong. Komposisi ilustrasi dan animasi tetap mengikuti pengaturan sebelumnya.
+- Menyelaraskan keterangan katalog gambar serta label musik dan galeri dengan redaksi baru.
+- Verifikasi: 21 tes Playwright lulus; build produksi berhasil. Pemeriksaan tambahan pada tujuh lebar layar (320, 390, 768, 810, 1024, 1440, 1920 px) tidak menemukan teks keluar secara horizontal atau tumpang tindih pada pasangan blok yang diperiksa; screenshot isi undangan mobile diperiksa visual.
+
+### DEV-22 — Balon terbaru, proporsi judul, dan ikon seragam
+
+- Mengganti semua balon dengan sumber `GAMBAR - BARU/Balon udara-baru.png`, dikonversi ke `balon-udara-baru-v3.webp` dan varian mobile transparan. URL baru menghindari cache versi sebelumnya; normalisasi kanvas dan loop tetap mengikuti komposisi yang ada.
+- Memperbesar nama Ichsan dan Ulfa pada hero desktop/mobile, serta menata ulang jarak vertikal nama desktop agar tetap berada di atas ornamen panggung.
+- Memperkecil judul Undangan pada mobile dengan ukuran responsif 44–64 px dan padding samping, agar tidak terpotong.
+- Mengganti tujuh ikon dengan set garis tipis berbingkai lingkaran: kamera untuk Momen, gantungan untuk Busana, masjid untuk Adab, simbol P untuk Parkir, pin lokasi, amplop konfirmasi, dan Instagram. Warna mengikuti section: krem, emas, atau teal. Seluruh ikon tetap tampil dan mempertahankan animasi serta fungsinya.
+- Katalog gambar diselaraskan dengan aset ikon terbaru.
+- Verifikasi: tujuh lebar layar 320–1920 px tanpa overflow pada judul yang diperiksa; seluruh tujuh ikon berhasil dimuat dan delapan penempatan balon menggunakan revisi terbaru. Screenshot desktop/mobile diperiksa. Seluruh 21 tes Playwright lulus dan build produksi berhasil.
+
 ## 5. Sistem animasi dan pengaturan akhir
 
 ### 5.1 Pemisahan entrance dan loop

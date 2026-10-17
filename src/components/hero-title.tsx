@@ -26,8 +26,8 @@ export function HeroTitle() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <h1 ref={ref} className="hero-title" aria-label="Abhishek weds Kanika">
-        {['Abhishek', 'weds', 'Kanika'].map((word, line) => (
+      <h1 ref={ref} className="hero-title" aria-label="Ichsan & Ulfa">
+        {['Ichsan', '&', 'Ulfa'].map((word, line) => (
           <span className={`hero-name hero-name-${line}`} key={word} aria-hidden="true">
             {Array.from(word).map((letter, index) => (
               <m.span

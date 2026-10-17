@@ -3,9 +3,9 @@ import { artwork, events, image } from '@/lib/invitation';
 
 export function Invitation() {
   return (
-    <section className="invitation-section relative text-center" aria-label="Wedding invitation and celebrations">
+    <section className="invitation-section relative text-center" aria-label="Undangan dan rangkaian pernikahan">
       <div className="invitation-copy relative">
-        <p className="mantra" lang="hi" data-reveal="top">ॐ श्री गणेशाय नम</p>
+        <p className="mantra" data-reveal="top">Bismillahirrahmanirrahim</p>
         <Art name={artwork.ganesha} className="invitation-ganesha ambient-breathe" motion="breathe" reveal="top" />
         <Art name={artwork.moon} className="invitation-moon" motion="rotate" reveal="left" />
         <picture className="invitation-balloon" data-art-motion="translate" data-reveal="right">
@@ -14,36 +14,36 @@ export function Invitation() {
         </picture>
         <Art name={artwork.palace} className="invitation-palace" motion="translate" reveal="right" />
         <div className="blessings">
-          <p data-reveal="top">With the heavenly blessings of</p>
-          <p data-reveal="top" data-reveal-delay="80">Smt. Lata Devi &amp; Sm. Kamal Kapoor</p>
+          <p data-reveal="top">Dengan memohon rida Allah</p>
+          <p data-reveal="top" data-reveal-delay="80">serta doa dan restu kedua orang tua</p>
           <p className="blessing-divider" data-reveal="top" data-reveal-delay="140">&mdash;&mdash;</p>
-          <p className="parents" data-reveal="top" data-reveal-delay="200">Mrs. Reena &amp; Mr. Rajiv Kapoor</p>
+          <p className="parents" data-reveal="top" data-reveal-delay="200">Kami beserta keluarga besar</p>
         </div>
-        <h2 className="invite-heading" data-reveal="top">INVITE</h2>
-        <p className="invitation-intro" data-reveal="top" data-reveal-delay="100">You to join us in the wedding celebrations of</p>
-        <div className="couple-names" aria-label="Abhishek and Kanika">
-          <p className="groom-name" data-reveal="top">Abhishek</p>
+        <h2 className="invite-heading" data-reveal="top">Undangan</h2>
+        <p className="invitation-intro" data-reveal="top" data-reveal-delay="100">Mengundang Anda ke pernikahan</p>
+        <div className="couple-names" aria-label="Ichsan dan Ulfa">
+          <p className="groom-name" data-reveal="top">Ichsan</p>
           <p className="ampersand" data-reveal="top" data-reveal-delay="80">&amp;</p>
-          <p className="bride-name" data-reveal="top" data-reveal-delay="160">Kanika</p>
+          <p className="bride-name" data-reveal="top" data-reveal-delay="160">Ulfa</p>
         </div>
-        <div className="bride-parents"><p data-reveal="top">Daughter of</p><p data-reveal="top" data-reveal-delay="100">Mrs. Shalini &amp; Mr. Aakash Mittal,</p></div>
-        <p className="events-intro" data-reveal="top">On the following events</p>
+        <div className="bride-parents"><p data-reveal="top">Dalam doa</p><p data-reveal="top" data-reveal-delay="100">Semoga menjadi keluarga sakinah, mawaddah, warahmah</p></div>
+        <p className="events-intro" data-reveal="top">Dalam rangkaian penuh makna</p>
       </div>
-      <div className="event-grid grid" aria-label="Wedding events">
+      <div className="event-grid grid" aria-label="Rangkaian pernikahan adat Aceh">
         {events.map(event => (
           <article className="event-card relative" key={event.name}>
             <div className="event-art relative" aria-hidden="true">
               <Art name={event.art} className="event-portrait" motion="breathe" reveal="top" />
               <Art name={artwork.balloon} className="event-balloon" motion="translate" reveal="left" />
-              <Art name="64NTAFiZlzU2kGaVG82xflIhbqk" className="event-palace" motion="translate" reveal="left" />
+              <Art name={artwork.eventPalace} className="event-palace" motion="translate" reveal="left" />
               <Art name={artwork.moon} className="event-moon" motion="rotate" reveal="right" />
             </div>
             <div className="event-copy flex flex-col items-center" data-reveal="top" data-reveal-delay="100">
               <h3>{event.name}</h3>
               <p>{event.date}</p>
-              <p>The Savoy, Mussoorie</p>
-              <p>6pm Onwards</p>
-              <a href="#location" className="underline underline-offset-2 hover:brightness-125">See the route</a>
+              <p>Lokasi akan diumumkan</p>
+              <p>Waktu menyusul</p>
+              <a href="#location" className="underline underline-offset-2 hover:brightness-125">Petunjuk lokasi acara</a>
             </div>
           </article>
         ))}

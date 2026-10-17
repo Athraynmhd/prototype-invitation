@@ -30,7 +30,7 @@ const layers: Layer[] = [
   { name: 'FZrF0IYCyry5YbaC0YGwqR4xmrU', desktop: [-429, 2638, 2299, 165], mobile: [-414, 1322, 1219, 88], z: 7 },
   { name: 'h19-ornamen-bunga-kiri', desktop: [-20, 2413, 287, 390], mobile: [-10, 1241, 120, 180], className: 'ambient-breathe', motion: 'breathe', z: 8 },
   { name: 'h20-ornamen-bunga-kanan', desktop: [1173, 2413, 287, 390], mobile: [280, 1241, 120, 180], className: 'ambient-breathe', motion: 'breathe', z: 8 },
-  { name: 'HvPxJF5tlETfDdKrl00JuLQppA', desktop: [613, 2570, 215, 240], mobile: [142, 1298, 106, 118], className: 'ambient-breathe', motion: 'breathe', z: 8 },
+  { name: 'dekorasi-tengah-berlian', desktop: [613, 2570, 215, 240], mobile: [142, 1298, 106, 118], className: 'ambient-breathe', motion: 'breathe', z: 8 },
   { name: artwork.canopy, mobileName: artwork.mobileCanopy, desktop: [0, 0, 1440, 700], mobile: [0, 0, 390, 451], z: 9 },
 ];
 
@@ -39,7 +39,7 @@ export const heroLayers = layers;
 
 export function Hero() {
   return (
-    <section className="hero relative isolate" aria-label="Abhishek weds Kanika">
+    <section className="hero relative isolate" aria-label="Pernikahan Ichsan dan Ulfa">
       {layers.map(({ name, mobileName, desktop: d, mobile: p, z, className = '', motion }, index) => {
         const style = { '--dx': `${d[0] / 14.4}%`, '--dy': `${d[1] / 14.4}cqw`, '--dw': `${d[2] / 14.4}%`, '--dh': `${d[3] / 14.4}cqw`, '--mx': `${p[0] / 3.9}%`, '--my': `${p[1] / 3.9}cqw`, '--mw': `${p[2] / 3.9}%`, '--mh': `${p[3] / 3.9}cqw`, zIndex: z } as CSSProperties;
         return mobileName ? (
